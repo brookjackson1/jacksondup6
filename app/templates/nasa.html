@@ -14,7 +14,7 @@
     <!-- Current APOD Section -->
     {% if current_apod %}
     <div class="card mb-5">
-        <div class="card-header bg-primary text-white">
+        <div class="card-header">
             <h3 class="mb-0"><i class="fas fa-star"></i> Today's Astronomy Picture</h3>
         </div>
         <div class="card-body">
@@ -57,7 +57,7 @@
 
     <!-- Search by Date -->
     <div class="card mb-5">
-        <div class="card-header" style="background: linear-gradient(90deg, #003399, #006633); color: white;">
+        <div class="card-header">
             <h4 class="mb-0"><i class="fas fa-search"></i> Search Past Pictures</h4>
         </div>
         <div class="card-body">
@@ -97,7 +97,7 @@
 
     <!-- Saved Pictures Section -->
     <div class="card">
-        <div class="card-header" style="background: linear-gradient(90deg, #003399, #006633); color: white;">
+        <div class="card-header">
             <h3 class="mb-0"><i class="fas fa-images"></i> My Saved Pictures ({{ saved_apods|length }})</h3>
         </div>
         <div class="card-body">
