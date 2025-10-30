@@ -1,6 +1,57 @@
-# Flask Starter Kit
+# Module 6 - NASA API Integration Project
 
-This is a Flask starter kit with basic structure and tooling for web application development.
+This is a Flask application that integrates with the NASA Astronomy Picture of the Day (APOD) API to display and manage astronomy pictures.
+
+## Features
+
+- **NASA APOD Integration**: Fetches and displays daily astronomy pictures from NASA's API
+- **Database Management**: Stores favorite pictures with full CRUD operations (Create, Read, Update, Delete)
+- **Date Search**: Search for pictures from any specific date in NASA's archive
+- **Responsive UI**: Professional Bootstrap styling with modal dialogs
+- **Error Handling**: Comprehensive error handling for API calls and database operations
+
+## API Selection
+
+**NASA APOD (Astronomy Picture of the Day) API**
+- API Documentation: https://api.nasa.gov/
+- Endpoint: https://api.nasa.gov/planetary/apod
+- Features: Daily astronomy pictures with titles, dates, explanations, and high-resolution images
+
+## Setup Instructions
+
+### 1. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 2. Database Configuration
+Create a `.env` file in the root directory with your database credentials:
+```
+DB_HOST=your_database_host
+DB_USER=your_database_user
+DB_PASSWORD=your_database_password
+DB_PORT=3306
+DB_NAME=your_database_name
+NASA_API_KEY=your_nasa_api_key
+```
+
+### 3. Create Database Table
+Run the SQL script to create the required table:
+```bash
+python -c "import pymysql; import os; from dotenv import load_dotenv; load_dotenv(); conn = pymysql.connect(host=os.getenv('DB_HOST'), user=os.getenv('DB_USER'), password=os.getenv('DB_PASSWORD'), database=os.getenv('DB_NAME')); [conn.cursor().execute(cmd.strip()) for cmd in open('database/nasa_apod_table.sql').read().split(';') if cmd.strip()]; conn.commit(); conn.close()"
+```
+
+Or manually run `database/nasa_apod_table.sql` in your MySQL database.
+
+### 4. Run the Application
+```bash
+python app.py
+```
+
+The application will be available at `http://localhost:5000`
+
+### 5. Access the NASA APOD Feature
+Navigate to `http://localhost:5000/nasa` or click "NASA APOD" in the navigation bar.
 
 ## Project Structure
 As your project grows, consider adding these organizational folders:
