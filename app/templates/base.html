@@ -2,21 +2,62 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Module 6 - NASA API Project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brook Jackson - Module 6 | NASA API Project</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --gcsu-blue: #003399;
             --gcsu-green: #006633;
             --gcsu-light-blue: #e6f2ff;
             --gcsu-light-green: #e6f7e6;
+            --dark-blue: #001f5c;
+            --accent-gold: #FFD700;
         }
-        
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             background: linear-gradient(135deg, var(--gcsu-light-blue) 0%, #ffffff 50%, var(--gcsu-light-green) 100%);
             min-height: 100vh;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Styles */
+        .site-header {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--gcsu-blue) 50%, var(--gcsu-green) 100%);
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .site-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+        }
+
+        .site-header .subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-top: 0.5rem;
+            opacity: 0.95;
+        }
+
+        .site-header .subtitle i {
+            color: var(--accent-gold);
+            margin-right: 0.5rem;
         }
         
         .navbar-gcsu {
@@ -52,26 +93,32 @@
             transform: translateY(-2px);
         }
         
+        /* Main Content Area */
+        .main-content {
+            flex: 1;
+            padding-bottom: 2rem;
+        }
+
         .container {
             margin-top: 2rem;
         }
-        
+
         .alert {
             border: none;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        
+
         .alert-danger {
             background: linear-gradient(45deg, #dc3545, #c82333);
             color: white;
         }
-        
+
         .alert-success {
             background: linear-gradient(45deg, var(--gcsu-green), #28a745);
             color: white;
         }
-        
+
         .btn-primary {
             background: linear-gradient(45deg, var(--gcsu-blue), var(--gcsu-green));
             border: none;
@@ -80,47 +127,184 @@
             font-weight: 500;
             transition: all 0.3s ease;
         }
-        
+
         .btn-primary:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0, 51, 153, 0.3);
         }
-        
+
         .card {
             border: none;
             border-radius: 15px;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
+            background: white;
         }
-        
+
         .card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
-        
+
         h1, h2, h3 {
             color: var(--gcsu-blue);
+            font-weight: 600;
         }
-        
+
         .table {
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background: white;
         }
-        
+
         .table thead th {
             background: linear-gradient(90deg, var(--gcsu-blue), var(--gcsu-green));
             color: white;
             border: none;
             font-weight: 600;
         }
+
+        /* Footer Styles */
+        .site-footer {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--gcsu-blue) 50%, var(--gcsu-green) 100%);
+            color: white;
+            padding: 2rem 0;
+            margin-top: auto;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .site-footer .container {
+            margin-top: 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-section h5 {
+            color: var(--accent-gold);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-section p {
+            margin: 0.5rem 0;
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-gold);
+            text-decoration: none;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin: 0.5rem 0;
+        }
+
+        .footer-links a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-gold);
+            color: var(--dark-blue);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .site-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .site-header .subtitle {
+                font-size: 1rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-section {
+                min-width: 100%;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Site Header -->
+    <header class="site-header">
+        <div class="container">
+            <h1><i class="fas fa-rocket"></i> Brook Jackson - Module 6</h1>
+            <p class="subtitle"><i class="fas fa-satellite"></i> NASA Astronomy Picture of the Day API Integration</p>
+        </div>
+    </header>
+
+    <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-gcsu">
         <a class="navbar-brand" href="{{ url_for('index') }}">
-            <i class="fas fa-home me-2"></i>Module 6 - NASA API
+            <i class="fas fa-home me-2"></i>Home
         </a>
-        <div class="collapse navbar-collapse">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('about') }}">
@@ -141,7 +325,9 @@
         </div>
     </nav>
 
-    <div class="container">
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
         <!-- Flash Messages -->
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
@@ -155,9 +341,69 @@
                 {% endfor %}
             {% endif %}
         {% endwith %}
-        
+
         {% block content %}{% endblock %}
+        </div>
     </div>
+
+    <!-- Site Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- About Section -->
+                <div class="footer-section">
+                    <h5><i class="fas fa-user-graduate"></i> About This Project</h5>
+                    <p>Developed by <strong>Brook Jackson</strong></p>
+                    <p>Module 6 Assignment - Flask & API Integration</p>
+                    <p>Georgia College & State University</p>
+                </div>
+
+                <!-- Project Info Section -->
+                <div class="footer-section">
+                    <h5><i class="fas fa-code"></i> Technologies Used</h5>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-check-circle"></i> Python Flask Framework</li>
+                        <li><i class="fas fa-check-circle"></i> NASA APOD API</li>
+                        <li><i class="fas fa-check-circle"></i> MySQL Database</li>
+                        <li><i class="fas fa-check-circle"></i> Bootstrap 4</li>
+                    </ul>
+                </div>
+
+                <!-- Quick Links Section -->
+                <div class="footer-section">
+                    <h5><i class="fas fa-link"></i> Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="{{ url_for('index') }}"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="{{ url_for('nasa.show_nasa') }}"><i class="fas fa-rocket"></i> NASA APOD</a></li>
+                        <li><a href="{{ url_for('about') }}"><i class="fas fa-info-circle"></i> About</a></li>
+                        <li><a href="https://api.nasa.gov/" target="_blank"><i class="fas fa-external-link-alt"></i> NASA API Docs</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Section -->
+                <div class="footer-section">
+                    <h5><i class="fas fa-envelope"></i> Connect</h5>
+                    <div class="social-links">
+                        <a href="https://github.com/brookjackson1/jacksondup6" target="_blank" title="GitHub Repository">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.gcsu.edu" target="_blank" title="GCSU Website">
+                            <i class="fas fa-university"></i>
+                        </a>
+                        <a href="https://api.nasa.gov/" target="_blank" title="NASA API">
+                            <i class="fas fa-satellite"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p>&copy; 2025 Brook Jackson | Module 6 Assignment | Built with <i class="fas fa-heart" style="color: var(--accent-gold);"></i> and Flask</p>
+                <p><small>Data provided by NASA's Astronomy Picture of the Day API</small></p>
+            </div>
+        </div>
+    </footer>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
