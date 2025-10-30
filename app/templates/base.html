@@ -445,11 +445,6 @@
                         <i class="fas fa-rocket me-1"></i>NASA APOD
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('examples.show_examples') }}">
-                        <i class="fas fa-database me-1"></i>Examples
-                    </a>
-                </li>
             </ul>
         </div>
     </nav>
@@ -503,7 +498,7 @@
                     <h5><i class="fas fa-link"></i> Quick Links</h5>
                     <ul class="footer-links">
                         <li><a href="{{ url_for('index') }}"><i class="fas fa-home"></i> Home</a></li>
-                        <li><a href="{{ url_for('nasa.show_nasa') }}"><i class="fas fa-rocket"></i> NASA APOD</a></li>
+                        <li><a href="{{ url_for('nasa.show_nasa') }}"><i class="fas fa-rocket"></i> NASA APOD Gallery</a></li>
                         <li><a href="{{ url_for('about') }}"><i class="fas fa-info-circle"></i> About</a></li>
                         <li><a href="https://api.nasa.gov/" target="_blank"><i class="fas fa-external-link-alt"></i> NASA API Docs</a></li>
                     </ul>
