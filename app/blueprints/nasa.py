@@ -26,12 +26,18 @@ def show_nasa():
             'api_key': NASA_API_KEY,
             'thumbs': True
         }
-        response = requests.get(NASA_APOD_URL, params=params, timeout=10)
+        response = requests.get(NASA_APOD_URL, params=params, timeout=30)
         response.raise_for_status()
         current_apod = response.json()
+    except requests.exceptions.Timeout:
+        error_message = "NASA API request timed out. Please try again in a moment."
+        flash(error_message, "warning")
+    except requests.exceptions.ConnectionError:
+        error_message = "Unable to connect to NASA API. Please check your internet connection."
+        flash(error_message, "warning")
     except requests.exceptions.RequestException as e:
-        error_message = f"Failed to fetch NASA APOD: {str(e)}"
-        flash(error_message, "error")
+        error_message = f"Failed to fetch NASA APOD. The NASA API may be temporarily unavailable."
+        flash(error_message, "warning")
     except Exception as e:
         error_message = f"Error processing NASA data: {str(e)}"
         flash(error_message, "error")
@@ -136,13 +142,17 @@ def search_apod():
             'date': search_date,
             'thumbs': True
         }
-        response = requests.get(NASA_APOD_URL, params=params, timeout=10)
+        response = requests.get(NASA_APOD_URL, params=params, timeout=30)
         response.raise_for_status()
         apod_data = response.json()
 
         return jsonify(apod_data)
+    except requests.exceptions.Timeout:
+        return jsonify({'error': 'NASA API request timed out. Please try again.'}), 408
+    except requests.exceptions.ConnectionError:
+        return jsonify({'error': 'Unable to connect to NASA API. Please check your internet connection.'}), 503
     except requests.exceptions.RequestException as e:
-        return jsonify({'error': f"Failed to fetch APOD: {str(e)}"}), 400
+        return jsonify({'error': 'Failed to fetch APOD. The NASA API may be temporarily unavailable.'}), 503
     except Exception as e:
         return jsonify({'error': f"Error processing data: {str(e)}"}), 500
 

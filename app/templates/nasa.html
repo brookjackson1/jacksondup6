@@ -50,8 +50,25 @@
         </div>
     </div>
     {% elif error_message %}
-    <div class="alert alert-warning">
-        <i class="fas fa-exclamation-triangle"></i> Unable to load today's picture. Please try again later.
+    <div class="card mb-5">
+        <div class="card-body text-center">
+            <div class="alert alert-warning">
+                <h4><i class="fas fa-exclamation-triangle"></i> Unable to Load Today's Picture</h4>
+                <p class="mb-3">The NASA API is currently experiencing issues or may be temporarily unavailable.</p>
+                <p class="mb-3"><strong>What you can do:</strong></p>
+                <ul class="text-left" style="max-width: 600px; margin: 0 auto;">
+                    <li>Refresh the page to try again</li>
+                    <li>Check your internet connection</li>
+                    <li>Browse your saved pictures below</li>
+                    <li>Try again in a few minutes</li>
+                </ul>
+                <div class="mt-4">
+                    <a href="{{ url_for('nasa.show_nasa') }}" class="btn btn-primary">
+                        <i class="fas fa-sync-alt"></i> Retry Now
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
     {% endif %}
 
