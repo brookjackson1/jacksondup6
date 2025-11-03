@@ -2,79 +2,72 @@
 
 {% block content %}
 
-<div class="text-center">
-    <div class="card shadow-lg p-5 mb-5">
-        <h1 class="display-4 mb-3">
-            <i class="fas fa-newspaper me-3" style="color: var(--nasa-red);"></i>Brook Jackson - Module 6
-        </h1>
-        <h2 class="h3 mb-4">Current News & Trends</h2>
+<div class="container" style="max-width: 1000px; margin-top: 3rem;">
+    <div class="mb-5">
+        <h1 class="mb-3" style="font-size: 3rem; border-bottom: 2px solid #121212; padding-bottom: 0.5rem;">Welcome to The Daily News</h1>
+        <p class="lead" style="font-size: 1.2rem; line-height: 1.8; color: #333;">A curated collection of the latest headlines and trending stories from around the world.</p>
+    </div>
 
-        <p class="lead mb-4">Stay informed with the latest headlines and trending stories from around the world. Browse current news, search by topics, and save your favorite articles!</p>
+    <div class="row mb-5">
+        <div class="col-md-8">
+            <article class="mb-4">
+                <h2 class="mb-3" style="font-size: 1.75rem;">About This Project</h2>
+                <p>This Flask web application integrates with News API to deliver up-to-date news and trending stories from thousands of sources worldwide. The platform allows you to browse top headlines, search articles by keyword or category, and manage your own collection of saved articles.</p>
+                <p>Built as part of Module 6 coursework, this application demonstrates full-stack development skills including API integration, database management, and responsive web design.</p>
+            </article>
 
-        <div class="row justify-content-center mb-4">
-            <div class="col-md-10">
-                <p class="mb-0">This Flask application integrates with News API to bring you up-to-date news and trending stories from thousands of sources worldwide. Browse top headlines, search by keyword or category, and create your own collection of saved articles with full CRUD operations.</p>
-            </div>
+            <article class="mb-4" style="border-top: 1px solid #dcdcdc; padding-top: 2rem;">
+                <h2 class="mb-3" style="font-size: 1.75rem;">Features</h2>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                        <strong style="position: absolute; left: 0;">→</strong>
+                        <strong>Top Headlines:</strong> View the latest breaking news and top stories from trusted sources
+                    </li>
+                    <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                        <strong style="position: absolute; left: 0;">→</strong>
+                        <strong>Search & Filter:</strong> Find specific news by keyword or browse by category (business, sports, technology, etc.)
+                    </li>
+                    <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                        <strong style="position: absolute; left: 0;">→</strong>
+                        <strong>Save Favorites:</strong> Create your personal collection with full CRUD operations (Create, Read, Update, Delete)
+                    </li>
+                </ul>
+            </article>
         </div>
 
-        <div class="row justify-content-center">
-            <div class="col-md-4 mb-3">
-                <div class="card h-100">
-                    <div class="card-body text-center">
-                        <i class="fas fa-fire fa-3x mb-3" style="color: var(--nasa-blue);"></i>
-                        <h5 class="card-title">Top Headlines</h5>
-                        <p class="card-text">View the latest breaking news and top stories from trusted sources around the world.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-3">
-                <div class="card h-100">
-                    <div class="card-body text-center">
-                        <i class="fas fa-search fa-3x mb-3" style="color: var(--nasa-blue);"></i>
-                        <h5 class="card-title">Search & Filter</h5>
-                        <p class="card-text">Search for news by keyword or browse by category like business, sports, technology, and more.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-3">
-                <div class="card h-100">
-                    <div class="card-body text-center">
-                        <i class="fas fa-bookmark fa-3x mb-3" style="color: var(--nasa-red);"></i>
-                        <h5 class="card-title">Save Favorites</h5>
-                        <p class="card-text">Create your personal collection with full create, read, update, and delete capabilities.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="mt-4">
-            <a href="{{ url_for('news.show_news') }}" class="btn btn-primary btn-lg me-3">
-                <i class="fas fa-newspaper me-2"></i>Explore News
-            </a>
-            <a href="{{ url_for('about') }}" class="btn btn-outline-secondary btn-lg">
-                <i class="fas fa-info-circle me-2"></i>Learn More
-            </a>
+        <div class="col-md-4">
+            <aside style="border: 1px solid #dcdcdc; padding: 1.5rem; background-color: #fafafa;">
+                <h3 style="font-size: 1.25rem; margin-bottom: 1rem; border-bottom: 2px solid #121212; padding-bottom: 0.5rem;">Quick Start</h3>
+                <p style="font-size: 0.95rem; margin-bottom: 1.5rem;">Begin exploring the latest news and create your personalized news collection.</p>
+                <a href="{{ url_for('news.show_news') }}" class="btn btn-primary btn-block mb-3" style="width: 100%;">
+                    View News
+                </a>
+                <a href="{{ url_for('about') }}" class="btn btn-outline-dark btn-block" style="width: 100%; background-color: white;">
+                    Learn More
+                </a>
+            </aside>
         </div>
     </div>
 </div>
 
 <style>
-    .card {
-        background: rgba(255, 255, 255, 0.98);
-        backdrop-filter: blur(10px);
+    .btn-outline-dark {
+        border: 1px solid #121212;
+        color: #121212;
+        font-family: Arial, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        border-radius: 0;
+        padding: 0.6rem 1.25rem;
+        transition: all 0.2s ease;
     }
 
-    .btn-outline-secondary {
-        border-color: var(--nasa-blue);
-        color: var(--nasa-blue);
-    }
-
-    .btn-outline-secondary:hover {
-        background-color: var(--nasa-blue);
-        border-color: var(--nasa-blue);
-        color: white;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(11, 61, 145, 0.4);
+    .btn-outline-dark:hover {
+        background-color: #121212 !important;
+        color: white !important;
+        border-color: #121212;
     }
 </style>
 

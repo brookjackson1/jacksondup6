@@ -6,16 +6,16 @@
     <title>Brook Jackson - Module 6 | News API Project</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Franklin+Gothic+Medium&display=swap" rel="stylesheet">
     <style>
         :root {
-            --nasa-blue: #0b3d91;
-            --nasa-red: #fc3d21;
-            --dark-navy: #17171b;
-            --light-gray: #f5f5f5;
-            --medium-gray: #6c6c6c;
-            --white: #ffffff;
-            --border-color: #d1d1d1;
+            --nyt-black: #121212;
+            --nyt-text: #333333;
+            --nyt-gray: #666666;
+            --nyt-light-gray: #e8e8e8;
+            --nyt-border: #dcdcdc;
+            --nyt-white: #ffffff;
+            --nyt-accent: #326891;
         }
 
         * {
@@ -25,100 +25,108 @@
         }
 
         body {
-            background-color: var(--light-gray);
+            background-color: var(--nyt-white);
             min-height: 100vh;
-            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            font-family: 'Crimson Text', Georgia, serif;
             display: flex;
             flex-direction: column;
-            color: #333;
-            line-height: 1.6;
+            color: var(--nyt-text);
+            line-height: 1.75;
+            font-size: 18px;
         }
 
-        /* NASA-Inspired Header */
+        /* NYT-Inspired Header */
         .site-header {
-            background: linear-gradient(180deg, #000000 0%, var(--dark-navy) 100%);
-            color: var(--white);
-            padding: 3rem 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            border-bottom: 4px solid var(--nasa-red);
+            background-color: var(--nyt-white);
+            border-top: 2px solid var(--nyt-black);
+            border-bottom: 1px solid var(--nyt-border);
+            padding: 1.5rem 0 1rem;
         }
 
         .site-header .container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 1rem;
+            gap: 0.5rem;
         }
 
         .site-header h1 {
-            font-size: 3rem;
+            font-family: 'Franklin Gothic Medium', Arial, sans-serif;
+            font-size: 3.5rem;
             font-weight: 700;
             margin: 0;
-            color: var(--white);
-            letter-spacing: 2px;
-            text-transform: uppercase;
+            color: var(--nyt-black);
+            letter-spacing: -1px;
+            text-transform: none;
         }
 
         .site-header h1 i {
-            color: var(--nasa-red);
-            margin-right: 1rem;
+            display: none;
         }
 
         .site-header .subtitle {
-            font-size: 1.3rem;
+            font-size: 0.95rem;
             font-weight: 400;
-            color: #e0e0e0;
+            color: var(--nyt-gray);
             letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-family: Arial, sans-serif;
         }
 
         .site-header .subtitle i {
-            color: var(--nasa-blue);
-            margin-right: 0.5rem;
+            display: none;
         }
 
-        /* NASA-Inspired Navigation */
+        /* NYT-Inspired Navigation */
         .navbar-gcsu {
-            background-color: var(--nasa-blue);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            background-color: var(--nyt-white);
+            border-bottom: 1px solid var(--nyt-border);
             padding: 0;
-            min-height: 60px;
+            min-height: 50px;
         }
 
         .navbar-toggler {
-            border: 2px solid rgba(255, 255, 255, 0.5);
+            border: 1px solid var(--nyt-border);
         }
 
         .navbar-toggler-icon {
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(51, 51, 51, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
         }
 
         .navbar-brand {
+            font-family: Arial, sans-serif;
             font-weight: 600;
-            font-size: 1.3rem;
-            color: var(--white) !important;
-            padding: 1rem 1.5rem;
-            transition: background-color 0.3s ease;
+            font-size: 0.9rem;
+            color: var(--nyt-text) !important;
+            padding: 0.75rem 1rem;
+            transition: color 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .navbar-brand:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--nyt-black) !important;
         }
 
         .navbar-brand i {
-            color: var(--nasa-red);
+            display: none;
         }
 
         .navbar-nav .nav-link {
-            color: var(--white) !important;
-            font-weight: 500;
-            padding: 1rem 1.5rem !important;
-            transition: all 0.3s ease;
-            border-bottom: 3px solid transparent;
+            font-family: Arial, sans-serif;
+            color: var(--nyt-text) !important;
+            font-weight: 400;
+            font-size: 0.875rem;
+            padding: 0.75rem 1rem !important;
+            transition: color 0.2s ease;
+            border-bottom: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .navbar-nav .nav-link:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-bottom: 3px solid var(--nasa-red);
+            color: var(--nyt-black) !important;
+            background-color: var(--nyt-light-gray);
         }
 
         .navbar-nav .nav-item {
@@ -136,79 +144,98 @@
         }
 
         .alert {
-            border: none;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--nyt-border);
+            border-radius: 0;
+            background-color: #f9f9f9;
+            color: var(--nyt-text);
         }
 
         .alert-danger {
-            background: linear-gradient(45deg, #dc3545, #c82333);
-            color: white;
+            background-color: #fff5f5;
+            border-color: #e8b4b4;
+            color: #8b0000;
         }
 
         .alert-success {
-            background: linear-gradient(45deg, var(--gcsu-green), #28a745);
-            color: white;
+            background-color: #f0f9f0;
+            border-color: #b4d7b4;
+            color: #2d5016;
+        }
+
+        .alert-warning {
+            background-color: #fffbf0;
+            border-color: #e8d8a4;
+            color: #6b5000;
         }
 
         /* Buttons */
         .btn-primary {
-            background-color: var(--nasa-blue);
-            border: 2px solid var(--nasa-blue);
-            border-radius: 4px;
-            padding: 0.65rem 1.5rem;
+            background-color: var(--nyt-black);
+            border: 1px solid var(--nyt-black);
+            border-radius: 0;
+            padding: 0.6rem 1.25rem;
             font-weight: 600;
-            transition: all 0.3s ease;
+            font-family: Arial, sans-serif;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-size: 0.9rem;
+            letter-spacing: 0.8px;
         }
 
         .btn-primary:hover {
-            background-color: #083a7a;
-            border-color: #083a7a;
-            box-shadow: 0 4px 12px rgba(11, 61, 145, 0.4);
+            background-color: var(--nyt-text);
+            border-color: var(--nyt-text);
         }
 
         .btn-success {
-            background-color: #28a745;
-            border: 2px solid #28a745;
-            border-radius: 4px;
+            background-color: var(--nyt-accent);
+            border: 1px solid var(--nyt-accent);
+            border-radius: 0;
             font-weight: 600;
-            transition: all 0.3s ease;
+            font-family: Arial, sans-serif;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
         }
 
         .btn-success:hover {
-            background-color: #218838;
-            border-color: #1e7e34;
-            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+            background-color: #274d6d;
+            border-color: #274d6d;
+        }
+
+        .btn-info, .btn-warning, .btn-danger {
+            border-radius: 0;
+            font-family: Arial, sans-serif;
+            font-size: 0.85rem;
         }
 
         /* Cards */
         .card {
-            border: 1px solid var(--border-color);
-            border-radius: 2px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-            transition: box-shadow 0.3s ease;
-            background: var(--white);
+            border: 1px solid var(--nyt-border);
+            border-radius: 0;
+            box-shadow: none;
+            transition: border-color 0.2s ease;
+            background: var(--nyt-white);
             margin-bottom: 1.5rem;
         }
 
         .card:hover {
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+            border-color: var(--nyt-gray);
         }
 
         .card-header {
-            background-color: var(--nasa-blue);
-            color: var(--white);
-            border-bottom: 3px solid var(--nasa-red);
-            padding: 1.25rem 1.5rem;
-            font-weight: 600;
+            background-color: var(--nyt-white);
+            color: var(--nyt-black);
+            border-bottom: 2px solid var(--nyt-black);
+            padding: 1rem 1.25rem;
+            font-weight: 700;
+            font-family: 'Franklin Gothic Medium', Arial, sans-serif;
         }
 
         .card-header h3, .card-header h4 {
-            color: var(--white);
+            color: var(--nyt-black);
             margin: 0;
+            font-size: 1.5rem;
+            letter-spacing: -0.5px;
         }
 
         .card-body {
@@ -217,46 +244,66 @@
 
         /* Typography */
         h1, h2, h3, h4, h5, h6 {
-            color: var(--dark-navy);
-            font-weight: 600;
+            font-family: 'Franklin Gothic Medium', Arial, sans-serif;
+            color: var(--nyt-black);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+
+        h1 { font-size: 2.75rem; }
+        h2 { font-size: 2rem; }
+        h3 { font-size: 1.5rem; }
+        h4 { font-size: 1.25rem; }
+        h5 { font-size: 1.1rem; }
+
+        p {
+            font-family: 'Crimson Text', Georgia, serif;
+            font-size: 1.05rem;
+            line-height: 1.75;
             margin-bottom: 1rem;
         }
 
-        h1 { font-size: 2.5rem; }
-        h2 { font-size: 2rem; }
-        h3 { font-size: 1.5rem; }
+        .card-text {
+            font-size: 0.95rem;
+        }
 
         /* Tables */
         .table {
-            border-radius: 2px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-            background: var(--white);
-            border: 1px solid var(--border-color);
+            border-radius: 0;
+            box-shadow: none;
+            background: var(--nyt-white);
+            border: 1px solid var(--nyt-border);
         }
 
         .table thead th {
-            background-color: var(--nasa-blue);
-            color: var(--white);
-            border: none;
-            font-weight: 600;
-            padding: 1rem;
+            background-color: var(--nyt-white);
+            color: var(--nyt-black);
+            border-bottom: 2px solid var(--nyt-black);
+            border-top: none;
+            font-weight: 700;
+            font-family: Arial, sans-serif;
+            padding: 0.75rem;
             text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 0.5px;
+            font-size: 0.8rem;
+            letter-spacing: 0.8px;
+        }
+
+        .table tbody tr {
+            border-bottom: 1px solid var(--nyt-light-gray);
         }
 
         .table tbody tr:hover {
-            background-color: #f8f9fa;
+            background-color: #fafafa;
         }
 
         /* Footer Styles */
         .site-footer {
-            background: linear-gradient(180deg, var(--dark-navy) 0%, #000000 100%);
-            color: var(--white);
-            padding: 3rem 0 1.5rem;
+            background-color: #fafafa;
+            color: var(--nyt-text);
+            padding: 2rem 0 1rem;
             margin-top: auto;
-            border-top: 4px solid var(--nasa-red);
+            border-top: 1px solid var(--nyt-border);
         }
 
         .site-footer .container {
@@ -269,45 +316,46 @@
             align-items: flex-start;
             flex-wrap: wrap;
             gap: 2rem;
-            padding-bottom: 2rem;
+            padding-bottom: 1.5rem;
         }
 
         .footer-section {
             flex: 1;
-            min-width: 220px;
+            min-width: 200px;
         }
 
         .footer-section h5 {
-            color: var(--white);
+            font-family: Arial, sans-serif;
+            color: var(--nyt-black);
             font-weight: 700;
-            margin-bottom: 1rem;
-            font-size: 1rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            border-bottom: 2px solid var(--nasa-red);
-            padding-bottom: 0.5rem;
+            letter-spacing: 0.8px;
+            border-bottom: none;
+            padding-bottom: 0;
         }
 
         .footer-section p {
-            margin: 0.5rem 0;
-            color: #d1d1d1;
+            margin: 0.4rem 0;
+            color: var(--nyt-gray);
             font-size: 0.9rem;
             line-height: 1.6;
         }
 
         .footer-section strong {
-            color: var(--white);
+            color: var(--nyt-text);
         }
 
         .footer-section a {
-            color: #d1d1d1;
+            color: var(--nyt-gray);
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: color 0.2s ease;
         }
 
         .footer-section a:hover {
-            color: var(--nasa-red);
-            text-decoration: none;
+            color: var(--nyt-black);
+            text-decoration: underline;
         }
 
         .footer-links {
@@ -316,8 +364,8 @@
         }
 
         .footer-links li {
-            margin: 0.6rem 0;
-            font-size: 0.9rem;
+            margin: 0.5rem 0;
+            font-size: 0.85rem;
         }
 
         .footer-links a {
@@ -327,69 +375,80 @@
         }
 
         .footer-links i {
-            color: var(--nasa-blue);
-            width: 16px;
+            color: var(--nyt-gray);
+            width: 14px;
+            font-size: 0.85rem;
         }
 
         .footer-bottom {
             text-align: center;
-            margin-top: 1rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.85rem;
-            color: #a0a0a0;
+            margin-top: 0.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--nyt-border);
+            font-size: 0.8rem;
+            color: var(--nyt-gray);
         }
 
         .footer-bottom p {
-            margin: 0.25rem 0;
+            margin: 0.2rem 0;
+            font-size: 0.8rem;
         }
 
         .social-links {
             display: flex;
-            gap: 0.75rem;
-            margin-top: 1rem;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
         }
 
         .social-links a {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 42px;
-            height: 42px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 2px;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            width: 32px;
+            height: 32px;
+            background-color: transparent;
+            border-radius: 0;
+            transition: all 0.2s ease;
+            border: 1px solid var(--nyt-border);
         }
 
         .social-links a:hover {
-            background-color: var(--nasa-red);
-            border-color: var(--nasa-red);
-            transform: translateY(-3px);
+            background-color: var(--nyt-black);
+            border-color: var(--nyt-black);
+        }
+
+        .social-links a:hover i {
+            color: var(--nyt-white);
         }
 
         .social-links a i {
-            color: var(--white);
+            color: var(--nyt-gray);
+            font-size: 0.9rem;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+            }
+
             .site-header h1 {
-                font-size: 2rem;
-                letter-spacing: 1px;
+                font-size: 2.25rem;
+                letter-spacing: -0.5px;
             }
 
             .site-header .subtitle {
-                font-size: 1rem;
+                font-size: 0.85rem;
             }
 
             .site-header {
-                padding: 2rem 0;
+                padding: 1rem 0 0.75rem;
             }
 
             .footer-content {
                 flex-direction: column;
-                text-align: center;
+                text-align: left;
+                gap: 1.5rem;
             }
 
             .footer-section {
@@ -397,22 +456,20 @@
             }
 
             .social-links {
-                justify-content: center;
+                justify-content: flex-start;
             }
 
             .navbar-nav {
-                padding: 1rem 0;
+                padding: 0.5rem 0;
             }
 
             .navbar-nav .nav-link {
-                border-bottom: none;
-                border-left: 3px solid transparent;
+                border-bottom: 1px solid var(--nyt-light-gray);
             }
 
-            .navbar-nav .nav-link:hover {
-                border-left: 3px solid var(--nasa-red);
-                border-bottom: none;
-            }
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.5rem; }
+            h3 { font-size: 1.25rem; }
         }
     </style>
 </head>
@@ -420,15 +477,15 @@
     <!-- Site Header -->
     <header class="site-header">
         <div class="container">
-            <h1><i class="fas fa-newspaper"></i> Current News & Trends</h1>
-            <p class="subtitle"><i class="fas fa-globe"></i> Stay Informed with the Latest Headlines and Stories</p>
+            <h1>The Daily News</h1>
+            <p class="subtitle">Brook Jackson - Module 6</p>
         </div>
     </header>
 
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-gcsu">
         <a class="navbar-brand" href="{{ url_for('index') }}">
-            <i class="fas fa-rocket me-2"></i>Brook Jackson - Module 6
+            Home
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -436,13 +493,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('about') }}">
-                        <i class="fas fa-info-circle me-1"></i>About
+                    <a class="nav-link" href="{{ url_for('news.show_news') }}">
+                        News
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('news.show_news') }}">
-                        <i class="fas fa-newspaper me-1"></i>News & Trends
+                    <a class="nav-link" href="{{ url_for('about') }}">
+                        About
                     </a>
                 </li>
             </ul>
@@ -476,42 +533,42 @@
             <div class="footer-content">
                 <!-- About Section -->
                 <div class="footer-section">
-                    <h5><i class="fas fa-user-graduate"></i> About This Project</h5>
-                    <p>Developed by <strong>Brook Jackson</strong></p>
-                    <p>Module 6 Assignment - Flask & API Integration</p>
+                    <h5>About</h5>
+                    <p><strong>Brook Jackson</strong></p>
+                    <p>Module 6 Assignment</p>
                     <p>Georgia College & State University</p>
                 </div>
 
                 <!-- Project Info Section -->
                 <div class="footer-section">
-                    <h5><i class="fas fa-code"></i> Technologies Used</h5>
+                    <h5>Technologies</h5>
                     <ul class="footer-links">
-                        <li><i class="fas fa-check-circle"></i> Python Flask Framework</li>
-                        <li><i class="fas fa-check-circle"></i> News API</li>
-                        <li><i class="fas fa-check-circle"></i> MySQL Database</li>
-                        <li><i class="fas fa-check-circle"></i> Bootstrap 4</li>
+                        <li>Python Flask</li>
+                        <li>News API</li>
+                        <li>MySQL Database</li>
+                        <li>Bootstrap 4</li>
                     </ul>
                 </div>
 
                 <!-- Quick Links Section -->
                 <div class="footer-section">
-                    <h5><i class="fas fa-link"></i> Quick Links</h5>
+                    <h5>Navigation</h5>
                     <ul class="footer-links">
-                        <li><a href="{{ url_for('index') }}"><i class="fas fa-home"></i> Home</a></li>
-                        <li><a href="{{ url_for('news.show_news') }}"><i class="fas fa-newspaper"></i> News & Trends</a></li>
-                        <li><a href="{{ url_for('about') }}"><i class="fas fa-info-circle"></i> About</a></li>
-                        <li><a href="https://newsapi.org/" target="_blank"><i class="fas fa-external-link-alt"></i> News API Docs</a></li>
+                        <li><a href="{{ url_for('index') }}">Home</a></li>
+                        <li><a href="{{ url_for('news.show_news') }}">News</a></li>
+                        <li><a href="{{ url_for('about') }}">About</a></li>
+                        <li><a href="https://newsapi.org/" target="_blank">News API</a></li>
                     </ul>
                 </div>
 
                 <!-- Contact Section -->
                 <div class="footer-section">
-                    <h5><i class="fas fa-envelope"></i> Connect</h5>
+                    <h5>Connect</h5>
                     <div class="social-links">
-                        <a href="https://github.com/brookjackson1/jacksondup6" target="_blank" title="GitHub Repository">
+                        <a href="https://github.com/brookjackson1/jacksondup6" target="_blank" title="GitHub">
                             <i class="fab fa-github"></i>
                         </a>
-                        <a href="https://www.gcsu.edu" target="_blank" title="GCSU Website">
+                        <a href="https://www.gcsu.edu" target="_blank" title="GCSU">
                             <i class="fas fa-university"></i>
                         </a>
                         <a href="https://newsapi.org/" target="_blank" title="News API">
@@ -523,8 +580,8 @@
 
             <!-- Footer Bottom -->
             <div class="footer-bottom">
-                <p>&copy; 2025 Brook Jackson | Module 6 Assignment | Georgia College & State University</p>
-                <p><small>News data provided by News API | Built with Python Flask</small></p>
+                <p>&copy; 2025 Brook Jackson | Georgia College & State University</p>
+                <p>News data provided by News API</p>
             </div>
         </div>
     </footer>
