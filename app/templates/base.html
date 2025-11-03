@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brook Jackson - Module 6 | NASA API Project</title>
+    <title>Brook Jackson - Module 6 | News API Project</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -420,8 +420,8 @@
     <!-- Site Header -->
     <header class="site-header">
         <div class="container">
-            <h1><i class="fas fa-space-shuttle"></i> NASA Astronomy Picture Gallery</h1>
-            <p class="subtitle"><i class="fas fa-star"></i> Explore the Universe Through NASA's Daily Astronomy Photos</p>
+            <h1><i class="fas fa-newspaper"></i> Current News & Trends</h1>
+            <p class="subtitle"><i class="fas fa-globe"></i> Stay Informed with the Latest Headlines and Stories</p>
         </div>
     </header>
 
@@ -441,8 +441,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('nasa.show_nasa') }}">
-                        <i class="fas fa-rocket me-1"></i>NASA APOD
+                    <a class="nav-link" href="{{ url_for('news.show_news') }}">
+                        <i class="fas fa-newspaper me-1"></i>News & Trends
                     </a>
                 </li>
             </ul>
@@ -487,7 +487,7 @@
                     <h5><i class="fas fa-code"></i> Technologies Used</h5>
                     <ul class="footer-links">
                         <li><i class="fas fa-check-circle"></i> Python Flask Framework</li>
-                        <li><i class="fas fa-check-circle"></i> NASA APOD API</li>
+                        <li><i class="fas fa-check-circle"></i> News API</li>
                         <li><i class="fas fa-check-circle"></i> MySQL Database</li>
                         <li><i class="fas fa-check-circle"></i> Bootstrap 4</li>
                     </ul>
@@ -498,9 +498,9 @@
                     <h5><i class="fas fa-link"></i> Quick Links</h5>
                     <ul class="footer-links">
                         <li><a href="{{ url_for('index') }}"><i class="fas fa-home"></i> Home</a></li>
-                        <li><a href="{{ url_for('nasa.show_nasa') }}"><i class="fas fa-rocket"></i> NASA APOD Gallery</a></li>
+                        <li><a href="{{ url_for('news.show_news') }}"><i class="fas fa-newspaper"></i> News & Trends</a></li>
                         <li><a href="{{ url_for('about') }}"><i class="fas fa-info-circle"></i> About</a></li>
-                        <li><a href="https://api.nasa.gov/" target="_blank"><i class="fas fa-external-link-alt"></i> NASA API Docs</a></li>
+                        <li><a href="https://newsapi.org/" target="_blank"><i class="fas fa-external-link-alt"></i> News API Docs</a></li>
                     </ul>
                 </div>
 
@@ -514,8 +514,8 @@
                         <a href="https://www.gcsu.edu" target="_blank" title="GCSU Website">
                             <i class="fas fa-university"></i>
                         </a>
-                        <a href="https://api.nasa.gov/" target="_blank" title="NASA API">
-                            <i class="fas fa-satellite"></i>
+                        <a href="https://newsapi.org/" target="_blank" title="News API">
+                            <i class="fas fa-newspaper"></i>
                         </a>
                     </div>
                 </div>
@@ -524,7 +524,7 @@
             <!-- Footer Bottom -->
             <div class="footer-bottom">
                 <p>&copy; 2025 Brook Jackson | Module 6 Assignment | Georgia College & State University</p>
-                <p><small>Data provided by NASA's Astronomy Picture of the Day API | Built with Python Flask</small></p>
+                <p><small>News data provided by News API | Built with Python Flask</small></p>
             </div>
         </div>
     </footer>

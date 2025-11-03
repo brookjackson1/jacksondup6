@@ -1,0 +1,342 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="text-center mb-3">
+                <i class="fas fa-newspaper"></i> Current News & Trends
+            </h1>
+            <p class="text-center text-muted">Module 6 - News API Integration</p>
+        </div>
+    </div>
+
+    <!-- Search Section -->
+    <div class="card mb-5">
+        <div class="card-header">
+            <h4 class="mb-0"><i class="fas fa-search"></i> Search News</h4>
+        </div>
+        <div class="card-body">
+            <form id="searchForm" class="mb-3">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="search_query">Search by Keyword:</label>
+                        <input type="text" id="search_query" name="q" class="form-control" placeholder="e.g., technology, politics, sports">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="category">Or Select Category:</label>
+                        <select id="category" name="category" class="form-control">
+                            <option value="">Choose...</option>
+                            <option value="business">Business</option>
+                            <option value="entertainment">Entertainment</option>
+                            <option value="health">Health</option>
+                            <option value="science">Science</option>
+                            <option value="sports">Sports</option>
+                            <option value="technology">Technology</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <label>&nbsp;</label>
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <i class="fas fa-search"></i> Search
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Search Results -->
+            <div id="searchResults" style="display: none;">
+                <hr>
+                <h5><i class="fas fa-list"></i> Search Results:</h5>
+                <div id="searchResultsContainer" class="row"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Top Headlines Section -->
+    {% if top_headlines %}
+    <div class="card mb-5">
+        <div class="card-header">
+            <h3 class="mb-0"><i class="fas fa-fire"></i> Top Headlines Today</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                {% for article in top_headlines %}
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        {% if article.urlToImage %}
+                        <img src="{{ article.urlToImage }}" class="card-img-top" alt="{{ article.title }}" style="height: 200px; object-fit: cover;" onerror="this.src='https://via.placeholder.com/400x200?text=No+Image'">
+                        {% else %}
+                        <div class="card-img-top bg-secondary text-white d-flex align-items-center justify-content-center" style="height: 200px;">
+                            <i class="fas fa-newspaper fa-3x"></i>
+                        </div>
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ article.title }}</h5>
+                            <p class="card-text">
+                                <small class="text-muted">
+                                    <i class="fas fa-user"></i> {{ article.author or 'Unknown' }}<br>
+                                    <i class="fas fa-building"></i> {{ article.source.name }}<br>
+                                    <i class="fas fa-clock"></i> {{ article.publishedAt[:10] if article.publishedAt else 'N/A' }}
+                                </small>
+                            </p>
+                            <p class="card-text">{{ article.description or 'No description available' }}</p>
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            <div class="btn-group btn-group-sm w-100" role="group">
+                                <a href="{{ article.url }}" target="_blank" class="btn btn-info">
+                                    <i class="fas fa-external-link-alt"></i> Read More
+                                </a>
+                                <form method="POST" action="{{ url_for('news.save_article') }}" style="display: inline; flex: 1;">
+                                    <input type="hidden" name="title" value="{{ article.title }}">
+                                    <input type="hidden" name="author" value="{{ article.author or 'Unknown' }}">
+                                    <input type="hidden" name="description" value="{{ article.description or '' }}">
+                                    <input type="hidden" name="url" value="{{ article.url }}">
+                                    <input type="hidden" name="url_to_image" value="{{ article.urlToImage or '' }}">
+                                    <input type="hidden" name="published_at" value="{{ article.publishedAt or '' }}">
+                                    <input type="hidden" name="source_name" value="{{ article.source.name }}">
+                                    <button type="submit" class="btn btn-success btn-sm w-100">
+                                        <i class="fas fa-save"></i> Save
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% elif error_message %}
+    <div class="card mb-5">
+        <div class="card-body text-center">
+            <div class="alert alert-warning">
+                <h4><i class="fas fa-exclamation-triangle"></i> Unable to Load News</h4>
+                <p class="mb-3">The News API is currently experiencing issues or may be temporarily unavailable.</p>
+                <p class="mb-3"><strong>What you can do:</strong></p>
+                <ul class="text-left" style="max-width: 600px; margin: 0 auto;">
+                    <li>Refresh the page to try again</li>
+                    <li>Check your internet connection</li>
+                    <li>Browse your saved articles below</li>
+                    <li>Try searching for specific topics</li>
+                </ul>
+                <div class="mt-4">
+                    <a href="{{ url_for('news.show_news') }}" class="btn btn-primary">
+                        <i class="fas fa-sync-alt"></i> Retry Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Saved Articles Section -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="mb-0"><i class="fas fa-bookmark"></i> My Saved Articles ({{ saved_articles|length }})</h3>
+        </div>
+        <div class="card-body">
+            {% if saved_articles %}
+            <div class="row">
+                {% for article in saved_articles %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        {% if article.url_to_image %}
+                        <img src="{{ article.url_to_image }}" class="card-img-top" alt="{{ article.title }}" style="height: 180px; object-fit: cover;" onerror="this.src='https://via.placeholder.com/400x180?text=No+Image'">
+                        {% else %}
+                        <div class="card-img-top bg-secondary text-white d-flex align-items-center justify-content-center" style="height: 180px;">
+                            <i class="fas fa-newspaper fa-2x"></i>
+                        </div>
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ article.title }}</h5>
+                            <p class="card-text">
+                                <small class="text-muted">
+                                    <i class="fas fa-user"></i> {{ article.author }}<br>
+                                    <i class="fas fa-building"></i> {{ article.source_name }}<br>
+                                    <i class="fas fa-clock"></i> Saved: {{ article.saved_at.strftime('%Y-%m-%d') if article.saved_at else 'N/A' }}
+                                </small>
+                            </p>
+                            <p class="card-text">{{ article.description[:100] if article.description else 'No description' }}{% if article.description and article.description|length > 100 %}...{% endif %}</p>
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            <div class="btn-group btn-group-sm w-100" role="group">
+                                <button class="btn btn-info" data-toggle="modal" data-target="#viewModal{{ article.id }}">
+                                    <i class="fas fa-eye"></i> View
+                                </button>
+                                <button class="btn btn-warning" data-toggle="modal" data-target="#editModal{{ article.id }}">
+                                    <i class="fas fa-edit"></i> Edit
+                                </button>
+                                <button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal{{ article.id }}">
+                                    <i class="fas fa-trash"></i> Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- View Modal -->
+                <div class="modal fade" id="viewModal{{ article.id }}" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">{{ article.title }}</h5>
+                                <button type="button" class="close" data-dismiss="modal">
+                                    <span>&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                {% if article.url_to_image %}
+                                <img src="{{ article.url_to_image }}" class="img-fluid mb-3" alt="{{ article.title }}" onerror="this.src='https://via.placeholder.com/800x400?text=No+Image'">
+                                {% endif %}
+                                <p><strong>Author:</strong> {{ article.author }}</p>
+                                <p><strong>Source:</strong> {{ article.source_name }}</p>
+                                <p><strong>Published:</strong> {{ article.published_at }}</p>
+                                <p><strong>Description:</strong></p>
+                                <p>{{ article.description or 'No description available' }}</p>
+                                <a href="{{ article.url }}" target="_blank" class="btn btn-primary">
+                                    <i class="fas fa-external-link-alt"></i> Read Full Article
+                                </a>
+                                <p class="text-muted mt-3"><small>Saved on: {{ article.saved_at }}</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Edit Modal -->
+                <div class="modal fade" id="editModal{{ article.id }}" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Edit Article</h5>
+                                <button type="button" class="close" data-dismiss="modal">
+                                    <span>&times;</span>
+                                </button>
+                            </div>
+                            <form method="POST" action="{{ url_for('news.update_article', article_id=article.id) }}">
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="title{{ article.id }}">Title</label>
+                                        <input type="text" class="form-control" id="title{{ article.id }}" name="title" value="{{ article.title }}" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="description{{ article.id }}">Description</label>
+                                        <textarea class="form-control" id="description{{ article.id }}" name="description" rows="5">{{ article.description }}</textarea>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Delete Modal -->
+                <div class="modal fade" id="deleteModal{{ article.id }}" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header bg-danger text-white">
+                                <h5 class="modal-title">Confirm Delete</h5>
+                                <button type="button" class="close text-white" data-dismiss="modal">
+                                    <span>&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure you want to delete this article?</p>
+                                <p><strong>{{ article.title }}</strong></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <form method="POST" action="{{ url_for('news.delete_article', article_id=article.id) }}" style="display: inline;">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle"></i> No saved articles yet. Save your favorite articles from above!
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<script>
+    // Search functionality
+    document.getElementById('searchForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const query = document.getElementById('search_query').value;
+        const category = document.getElementById('category').value;
+
+        if (!query && !category) {
+            alert('Please enter a search query or select a category');
+            return;
+        }
+
+        let url = '{{ url_for("news.search_news") }}?';
+        if (query) url += 'q=' + encodeURIComponent(query);
+        if (category) url += 'category=' + category;
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert('Error: ' + data.error);
+                    return;
+                }
+
+                const articles = data.articles || [];
+                const container = document.getElementById('searchResultsContainer');
+                const resultsDiv = document.getElementById('searchResults');
+
+                if (articles.length === 0) {
+                    container.innerHTML = '<div class="col-12"><p class="text-muted">No articles found.</p></div>';
+                } else {
+                    container.innerHTML = articles.map(article => `
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100">
+                                ${article.urlToImage ?
+                                    `<img src="${article.urlToImage}" class="card-img-top" style="height: 150px; object-fit: cover;" onerror="this.src='https://via.placeholder.com/400x150?text=No+Image'">` :
+                                    `<div class="card-img-top bg-secondary text-white d-flex align-items-center justify-content-center" style="height: 150px;"><i class="fas fa-newspaper fa-2x"></i></div>`
+                                }
+                                <div class="card-body">
+                                    <h6 class="card-title">${article.title}</h6>
+                                    <p class="card-text"><small class="text-muted">${article.source.name} - ${article.publishedAt ? article.publishedAt.substring(0, 10) : 'N/A'}</small></p>
+                                    <p class="card-text">${article.description || 'No description'}</p>
+                                </div>
+                                <div class="card-footer bg-transparent">
+                                    <a href="${article.url}" target="_blank" class="btn btn-info btn-sm">
+                                        <i class="fas fa-external-link-alt"></i> Read
+                                    </a>
+                                    <form method="POST" action="{{ url_for('news.save_article') }}" style="display: inline;">
+                                        <input type="hidden" name="title" value="${article.title}">
+                                        <input type="hidden" name="author" value="${article.author || 'Unknown'}">
+                                        <input type="hidden" name="description" value="${article.description || ''}">
+                                        <input type="hidden" name="url" value="${article.url}">
+                                        <input type="hidden" name="url_to_image" value="${article.urlToImage || ''}">
+                                        <input type="hidden" name="published_at" value="${article.publishedAt || ''}">
+                                        <input type="hidden" name="source_name" value="${article.source.name}">
+                                        <button type="submit" class="btn btn-success btn-sm">
+                                            <i class="fas fa-save"></i> Save
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('');
+                }
+
+                resultsDiv.style.display = 'block';
+            })
+            .catch(error => {
+                alert('Error fetching data: ' + error);
+            });
+    });
+</script>
+{% endblock %}

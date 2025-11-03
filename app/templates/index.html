@@ -5,15 +5,15 @@
 <div class="text-center">
     <div class="card shadow-lg p-5 mb-5">
         <h1 class="display-4 mb-3">
-            <i class="fas fa-rocket me-3" style="color: var(--nasa-red);"></i>Brook Jackson - Module 6
+            <i class="fas fa-newspaper me-3" style="color: var(--nasa-red);"></i>Brook Jackson - Module 6
         </h1>
-        <h2 class="h3 mb-4">NASA Astronomy Picture Gallery</h2>
+        <h2 class="h3 mb-4">Current News & Trends</h2>
 
-        <p class="lead mb-4">Explore the wonders of the universe through NASA's Astronomy Picture of the Day API. View daily astronomy photos, search historical archives, and save your favorite cosmic images!</p>
+        <p class="lead mb-4">Stay informed with the latest headlines and trending stories from around the world. Browse current news, search by topics, and save your favorite articles!</p>
 
         <div class="row justify-content-center mb-4">
             <div class="col-md-10">
-                <p class="mb-0">This Flask application integrates with NASA's APOD (Astronomy Picture of the Day) API to bring you stunning images and videos from space. Browse today's featured astronomy picture, search through NASA's extensive archive, and create your own collection of favorites with full CRUD operations.</p>
+                <p class="mb-0">This Flask application integrates with News API to bring you up-to-date news and trending stories from thousands of sources worldwide. Browse top headlines, search by keyword or category, and create your own collection of saved articles with full CRUD operations.</p>
             </div>
         </div>
 
@@ -21,9 +21,9 @@
             <div class="col-md-4 mb-3">
                 <div class="card h-100">
                     <div class="card-body text-center">
-                        <i class="fas fa-image fa-3x mb-3" style="color: var(--nasa-blue);"></i>
-                        <h5 class="card-title">Daily Pictures</h5>
-                        <p class="card-text">View NASA's featured Astronomy Picture of the Day with detailed explanations.</p>
+                        <i class="fas fa-fire fa-3x mb-3" style="color: var(--nasa-blue);"></i>
+                        <h5 class="card-title">Top Headlines</h5>
+                        <p class="card-text">View the latest breaking news and top stories from trusted sources around the world.</p>
                     </div>
                 </div>
             </div>
@@ -31,15 +31,15 @@
                 <div class="card h-100">
                     <div class="card-body text-center">
                         <i class="fas fa-search fa-3x mb-3" style="color: var(--nasa-blue);"></i>
-                        <h5 class="card-title">Archive Search</h5>
-                        <p class="card-text">Explore NASA's extensive archive by searching for pictures from any date.</p>
+                        <h5 class="card-title">Search & Filter</h5>
+                        <p class="card-text">Search for news by keyword or browse by category like business, sports, technology, and more.</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 mb-3">
                 <div class="card h-100">
                     <div class="card-body text-center">
-                        <i class="fas fa-heart fa-3x mb-3" style="color: var(--nasa-red);"></i>
+                        <i class="fas fa-bookmark fa-3x mb-3" style="color: var(--nasa-red);"></i>
                         <h5 class="card-title">Save Favorites</h5>
                         <p class="card-text">Create your personal collection with full create, read, update, and delete capabilities.</p>
                     </div>
@@ -48,8 +48,8 @@
         </div>
 
         <div class="mt-4">
-            <a href="{{ url_for('nasa.show_nasa') }}" class="btn btn-primary btn-lg me-3">
-                <i class="fas fa-rocket me-2"></i>Explore NASA Gallery
+            <a href="{{ url_for('news.show_news') }}" class="btn btn-primary btn-lg me-3">
+                <i class="fas fa-newspaper me-2"></i>Explore News
             </a>
             <a href="{{ url_for('about') }}" class="btn btn-outline-secondary btn-lg">
                 <i class="fas fa-info-circle me-2"></i>Learn More

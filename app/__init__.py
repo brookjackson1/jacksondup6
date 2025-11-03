@@ -6,9 +6,9 @@ app = create_app()
 app.secret_key = 'your-secret'  # Replace with an environment
 
 # Register Blueprints
-from app.blueprints.nasa import nasa
+from app.blueprints.news import news
 
-app.register_blueprint(nasa, url_prefix='/nasa')
+app.register_blueprint(news, url_prefix='/news')
 
 from . import routes
 
