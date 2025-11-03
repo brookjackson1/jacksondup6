@@ -5,42 +5,51 @@
 <div class="text-center">
     <div class="card shadow-lg p-5 mb-5">
         <h1 class="display-4 mb-3">
-            <i class="fas fa-graduation-cap me-3"></i>Georgia College & State University
+            <i class="fas fa-rocket me-3" style="color: var(--nasa-red);"></i>Brook Jackson - Module 6
         </h1>
-        <h2 class="h3 text-muted mb-4">MIS Flask Starter Kit</h2>
-        
-        <p class="lead mb-4">Welcome to GCSU's Flask development environment! This starter kit provides a foundation for building web applications using Python and Flask.</p>
-        
+        <h2 class="h3 mb-4">NASA Astronomy Picture Gallery</h2>
+
+        <p class="lead mb-4">Explore the wonders of the universe through NASA's Astronomy Picture of the Day API. View daily astronomy photos, search historical archives, and save your favorite cosmic images!</p>
+
         <div class="row justify-content-center mb-4">
             <div class="col-md-10">
-                <p class="mb-0">Georgia College & State University, located in Milledgeville, Georgia, is a public liberal arts university known for its commitment to undergraduate education and student success. Our MIS program prepares students with practical skills in software development, data analysis, and modern web technologies for business applications.</p>
+                <p class="mb-0">This Flask application integrates with NASA's APOD (Astronomy Picture of the Day) API to bring you stunning images and videos from space. Browse today's featured astronomy picture, search through NASA's extensive archive, and create your own collection of favorites with full CRUD operations.</p>
             </div>
         </div>
-        
+
         <div class="row justify-content-center">
-            <div class="col-md-6 mb-3">
+            <div class="col-md-4 mb-3">
                 <div class="card h-100">
                     <div class="card-body text-center">
-                        <i class="fas fa-code fa-3x mb-3" style="color: var(--gcsu-blue);"></i>
-                        <h5 class="card-title">Modern Development</h5>
-                        <p class="card-text">Built with Flask, Bootstrap, and modern web technologies for responsive design.</p>
+                        <i class="fas fa-image fa-3x mb-3" style="color: var(--nasa-blue);"></i>
+                        <h5 class="card-title">Daily Pictures</h5>
+                        <p class="card-text">View NASA's featured Astronomy Picture of the Day with detailed explanations.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 mb-3">
+            <div class="col-md-4 mb-3">
                 <div class="card h-100">
                     <div class="card-body text-center">
-                        <i class="fas fa-database fa-3x mb-3" style="color: var(--gcsu-green);"></i>
-                        <h5 class="card-title">Database Ready</h5>
-                        <p class="card-text">Pre-configured for MySQL/PostgreSQL with example CRUD operations.</p>
+                        <i class="fas fa-search fa-3x mb-3" style="color: var(--nasa-blue);"></i>
+                        <h5 class="card-title">Archive Search</h5>
+                        <p class="card-text">Explore NASA's extensive archive by searching for pictures from any date.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-heart fa-3x mb-3" style="color: var(--nasa-red);"></i>
+                        <h5 class="card-title">Save Favorites</h5>
+                        <p class="card-text">Create your personal collection with full create, read, update, and delete capabilities.</p>
                     </div>
                 </div>
             </div>
         </div>
-        
+
         <div class="mt-4">
-            <a href="{{ url_for('examples.show_examples') }}" class="btn btn-primary btn-lg me-3">
-                <i class="fas fa-eye me-2"></i>View Examples
+            <a href="{{ url_for('nasa.show_nasa') }}" class="btn btn-primary btn-lg me-3">
+                <i class="fas fa-rocket me-2"></i>Explore NASA Gallery
             </a>
             <a href="{{ url_for('about') }}" class="btn btn-outline-secondary btn-lg">
                 <i class="fas fa-info-circle me-2"></i>Learn More
@@ -51,21 +60,21 @@
 
 <style>
     .card {
-        background: rgba(255, 255, 255, 0.95);
+        background: rgba(255, 255, 255, 0.98);
         backdrop-filter: blur(10px);
     }
-    
+
     .btn-outline-secondary {
-        border-color: var(--gcsu-blue);
-        color: var(--gcsu-blue);
+        border-color: var(--nasa-blue);
+        color: var(--nasa-blue);
     }
-    
+
     .btn-outline-secondary:hover {
-        background-color: var(--gcsu-blue);
-        border-color: var(--gcsu-blue);
+        background-color: var(--nasa-blue);
+        border-color: var(--nasa-blue);
         color: white;
         transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0, 51, 153, 0.3);
+        box-shadow: 0 4px 8px rgba(11, 61, 145, 0.4);
     }
 </style>
 
