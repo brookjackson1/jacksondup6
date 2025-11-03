@@ -26,7 +26,7 @@ def show_nasa():
             'api_key': NASA_API_KEY,
             'thumbs': True
         }
-        response = requests.get(NASA_APOD_URL, params=params, timeout=30)
+        response = requests.get(NASA_APOD_URL, params=params, timeout=10)
         response.raise_for_status()
         current_apod = response.json()
     except requests.exceptions.Timeout:
@@ -142,7 +142,7 @@ def search_apod():
             'date': search_date,
             'thumbs': True
         }
-        response = requests.get(NASA_APOD_URL, params=params, timeout=30)
+        response = requests.get(NASA_APOD_URL, params=params, timeout=10)
         response.raise_for_status()
         apod_data = response.json()
 
